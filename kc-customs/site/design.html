@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Design Your Dream Bike | KC Customs Chennai</title>
+<meta name="description" content="Design your RX100, RXZ or RX115 with KC Customs' real paint finishes, airbrush art, graphics and hydro dip patterns, then send the build to KC on WhatsApp.">
+<meta name="theme-color" content="#0B0D11">
+<meta property="og:title" content="Design Your Dream Bike | KC Customs">
+<meta property="og:description" content="Pick your RX, choose KC paint, artwork and hydro patterns, and send the build to KC Customs.">
+<meta property="og:image" content="assets/media/og-image.jpg">
+<link rel="icon" href="assets/media/logo-128.webp" type="image/webp">
+<link rel="preload" href="assets/fonts/Anton-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="configurator/studio.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="studio-page">
+<a class="skip" href="#app">Skip to the configurator</a>
+<header class="nav solid">
+  <a class="brand" href="index.html" aria-label="KC Customs home"><img src="assets/media/logo-128.webp" width="40" height="40" alt=""><span class="brand-t">KC Customs</span></a>
+  <p class="studio-crumb label" aria-live="polite"><span>Design your dream bike</span></p>
+  <div class="nav-r">
+    <a class="btn btn-sm btn-line" href="index.html#builds">Real builds</a>
+    <a class="btn btn-sm btn-solid nav-wa" href="https://wa.me/919677184462?text=Hi%20KC%20Customs" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+  </div>
+</header>
+
+<main id="app">
+  <!-- STEP 0: choose a bike -->
+  <section class="picker" id="picker" aria-labelledby="picker-h">
+    <div class="wrap">
+      <p class="label"><span class="dot" aria-hidden="true"></span>KC Customs design studio</p>
+      <h1 id="picker-h">Design your <em>dream</em> bike</h1>
+      <p class="picker-sub">Pick your ride. Every finish, pattern and artwork here comes from real KC Customs work.</p>
+      <div class="models" id="models"></div>
+      <p class="fine picker-more">RX King, RX135 or Aerox? <a class="link" href="https://wa.me/919677184462?text=Hi%20KC%20Customs%2C%20I%27d%20like%20to%20design%20a%20custom%20build%20for%20my%20bike." target="_blank" rel="noopener">Message KC directly</a>, and more models are coming here.</p>
+      <div class="saved" id="saved" hidden><p class="label">Your saved designs (this browser)</p><div class="saved-list"></div></div>
+    </div>
+  </section>
+
+  <!-- WORKSPACE -->
+  <section class="studio" id="studio" hidden aria-label="Customisation workspace">
+    <aside class="st-left" aria-label="Customisation options">
+      <div class="st-steps" role="tablist" aria-label="Categories"></div>
+      <div class="st-panel" id="panel"></div>
+      <div class="st-stepnav"><button type="button" class="btn btn-line btn-sm" data-step="-1">← Back</button><span class="st-stepcount label"></span><button type="button" class="btn btn-solid btn-sm" data-step="1">Next →</button></div>
+    </aside>
+
+    <div class="st-center">
+      <div class="st-tools" role="toolbar" aria-label="Preview controls">
+        <div class="seg" role="group" aria-label="View">
+          <button type="button" data-view="full" class="is-on">Full</button><button type="button" data-view="tank">Tank</button><button type="button" data-view="side">Side</button><button type="button" data-view="wheels">Wheels</button>
+        </div>
+        <div class="seg" role="group" aria-label="Zoom">
+          <button type="button" data-zoom="-1" aria-label="Zoom out">−</button><button type="button" data-zoom="1" aria-label="Zoom in">+</button>
+        </div>
+        <button type="button" class="tool" data-act="compare" aria-pressed="false">Compare</button>
+        <div class="seg" role="group" aria-label="History">
+          <button type="button" data-act="undo" aria-label="Undo">↶</button><button type="button" data-act="redo" aria-label="Redo">↷</button>
+        </div>
+        <button type="button" class="tool" data-act="reset">Reset</button>
+      </div>
+      <div class="stage" id="stage">
+        <div class="stage-layer stage-custom" id="layer-custom"></div>
+        <div class="stage-layer stage-stock" id="layer-stock" hidden></div>
+        <div class="cmp" id="cmp" hidden><input type="range" min="0" max="100" value="50" aria-label="Compare stock and custom"><span class="cmp-l label">Stock</span><span class="cmp-r label">Yours</span></div>
+        <p class="stage-note">Concept illustration · not to scale · drag to pan</p>
+      </div>
+    </div>
+
+    <aside class="st-right" aria-label="Your configuration">
+      <div class="sum-head"><p class="label">Your build</p><h2 class="sum-model"></h2><p class="sum-ref label"></p></div>
+      <dl class="sum-list"></dl>
+      <div class="sum-actions">
+        <button type="button" class="btn btn-solid btn-lg sum-req" data-act="request"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Request this build</button>
+        <div class="sum-row">
+          <button type="button" class="btn btn-line btn-sm" data-act="save">Save</button>
+          <button type="button" class="btn btn-line btn-sm" data-act="share">Share link</button>
+          <button type="button" class="btn btn-line btn-sm" data-act="image">Image</button>
+        </div>
+        <button type="button" class="link sum-change" data-act="change">Change bike</button>
+        <p class="fine">This is a concept. Final design, feasibility and pricing are confirmed by KC Customs.</p>
+      </div>
+    </aside>
+  </section>
+</main>
+
+<dialog class="req" id="req" aria-labelledby="req-h">
+  <form method="dialog" class="req-box">
+    <div class="req-top"><h2 id="req-h">Request this <em>build</em></h2><button type="button" class="vd-close" data-close aria-label="Close">✕</button></div>
+    <div class="req-grid">
+      <div class="req-prev" id="req-prev"></div>
+      <div>
+        <p class="label req-ref"></p>
+        <label class="dz-note"><span class="label">Your name (optional)</span><input type="text" name="name" maxlength="40" autocomplete="name"></label>
+        <label class="ack"><input type="checkbox" name="ack" required> <span>I understand this is a concept preview. KC Customs will confirm the final design, feasibility and price.</span></label>
+        <button type="button" class="btn btn-solid btn-lg" data-act="send"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg>Send on WhatsApp</button>
+        <div class="sum-row">
+          <button type="button" class="btn btn-line btn-sm" data-act="image">Download image</button>
+          <button type="button" class="btn btn-line btn-sm" data-act="share-image" hidden>Share image</button>
+        </div>
+        <p class="fine">WhatsApp opens with your summary and design link. To include the picture, download it or use "Share image" and attach it in the chat.</p>
+      </div>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.3 1.3-1.8 1.3-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></symbol>
+</svg>
+<noscript><p class="wrap" style="padding:120px 0">The design studio needs JavaScript. You can still <a class="link" href="https://wa.me/919677184462">message KC Customs on WhatsApp</a>.</p></noscript>
+<script type="module" src="configurator/studio.js"></script>
+</body>
+</html>

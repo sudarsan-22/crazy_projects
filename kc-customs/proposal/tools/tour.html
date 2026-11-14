@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>KC full tour presenter (temporary)</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#0B0D11}
+#site{position:absolute;inset:0;width:1920px;height:1080px;border:0;transition:opacity .5s}
+.card{position:absolute;inset:0;z-index:20;display:grid;place-items:center;align-content:center;gap:26px;background:radial-gradient(900px 500px at 50% 45%,#2a1a35,#0B0D11 70%);opacity:0;transition:opacity .8s;pointer-events:none;text-align:center}
+.card.on{opacity:1}
+.card img{width:190px;border-radius:24px;box-shadow:0 30px 80px -20px rgba(129,61,138,.8);animation:pop 1.2s cubic-bezier(.16,1,.3,1)}
+@keyframes pop{from{transform:scale(.85);opacity:0}to{transform:none;opacity:1}}
+.card h1{font:400 120px/0.95 Anton,sans-serif;text-transform:uppercase;color:#EEEAF2;margin:0}
+.card h1 em{font-family:'Instrument Serif',serif;font-style:italic;text-transform:none;color:#D9B07F}
+.card p{font:600 20px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#9C98A6;margin:0}
+.card .ta{font:500 26px 'Noto Sans Tamil',sans-serif;letter-spacing:0;text-transform:none;color:#cfcad8}
+.cap{position:absolute;z-index:30;left:72px;bottom:60px;max-width:1150px;padding:20px 30px 22px;border-radius:10px;background:rgba(11,13,17,.84);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(238,234,242,.14);border-left:4px solid #D9B07F;opacity:0;transform:translateY(12px);transition:opacity .25s,transform .3s cubic-bezier(.16,1,.3,1)}
+.cap.on{opacity:1;transform:none}
+.cap small{display:block;font:600 14px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#D9B07F;margin-bottom:8px}
+.cap .en{display:block;font:700 42px/1.15 Inter,sans-serif;color:#EEEAF2}
+.cap .ta:empty{display:none}
+.cap .ta{display:block;margin-top:8px;font:500 27px/1.3 'Noto Sans Tamil',sans-serif;color:#cfcad8}
+.phone{position:absolute;z-index:15;left:50%;top:50%;width:420px;height:880px;margin:-440px 0 0 -210px;border-radius:56px;background:#050608;box-shadow:0 0 0 2px #2a2d33,0 50px 120px -30px rgba(129,61,138,.9);opacity:0;transition:opacity .6s;padding:18px 15px}
+.phone.on{opacity:1}
+.phone iframe{width:390px;height:844px;border:0;border-radius:40px;display:block}
+.phone-bg{position:absolute;inset:0;z-index:14;background:radial-gradient(900px 600px at 50% 50%,#24162f,#0B0D11 70%);opacity:0;transition:opacity .6s}
+.phone-bg.on{opacity:1}
+.bubble{position:absolute;z-index:25;right:90px;top:110px;width:600px;max-height:820px;overflow:hidden;background:#0f1a14;border:1px solid rgba(37,211,102,.35);border-radius:18px;padding:22px 26px;box-shadow:0 40px 100px -30px #000;opacity:0;transform:translateX(30px);transition:opacity .6s,transform .7s cubic-bezier(.16,1,.3,1)}
+.bubble.on{opacity:1;transform:none}
+.bubble small{display:block;font:600 13px Inter;letter-spacing:.18em;text-transform:uppercase;color:#25D366;margin-bottom:12px}
+.bubble pre{margin:0;white-space:pre-wrap;font:500 19px/1.45 Inter,sans-serif;color:#e9f5ec}
+.cursor{position:absolute;z-index:40;width:26px;height:26px;border-radius:50%;border:2px solid #fff;background:rgba(177,119,193,.35);box-shadow:0 0 18px rgba(177,119,193,.8);transform:translate(-50%,-50%);transition:left .3s cubic-bezier(.65,0,.35,1),top .3s cubic-bezier(.65,0,.35,1),opacity .3s;opacity:0;pointer-events:none}
+.cursor.on{opacity:1}
+.cursor.tap{animation:tap .35s}
+@keyframes tap{50%{transform:translate(-50%,-50%) scale(.6)}}
+</style></head>
+<body>
+<iframe id="site" src="about:blank" title="site"></iframe>
+<div class="phone-bg" id="phoneBg"></div>
+<div class="phone" id="phone"><iframe id="ph" src="about:blank" title="phone"></iframe></div>
+<div class="bubble" id="bubble"><small>Message KC Customs receives on WhatsApp</small><pre id="msg"></pre></div>
+<div class="card" id="card"></div>
+<div class="cap" id="cap"><small>KC Customs · Website tour</small><span class="en" id="capE"></span><span class="ta" id="capT"></span></div>
+<div class="cursor" id="cur"></div>
+<script type="module">
+const $ = (s) => document.querySelector(s);
+const sleep = (ms) => new Promise((r) => setTimeout(r, Math.max(0, ms)));
+const F = +(new URLSearchParams(location.search).get('speed') || 1);
+const wait = (ms) => sleep(ms * F);
+const site = $('#site'), W = () => site.contentWindow, D = () => site.contentDocument;
+const ease = (t) => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+const tween = (ms0, fn) => new Promise((res) => { const ms = Math.max(1, ms0 * F); const t0 = performance.now(); (function f(t) { const k = Math.min(1, (t - t0) / ms); fn(ease(k)); k < 1 ? requestAnimationFrame(f) : res(); })(t0); });
+const scrollY = async (win, y, ms) => { const y0 = win.scrollY; await tween(ms, (k) => win.scrollTo(0, y0 + (y - y0) * k)); };
+const top = (doc, sel, off = 0) => doc.querySelector(sel).getBoundingClientRect().top + doc.defaultView.scrollY + off;
+const hscroll = async (el, dx, ms) => { const x0 = el.scrollLeft; el.style.scrollSnapType = 'none'; await tween(ms, (k) => { el.scrollLeft = x0 + dx * k; }); };
+const nav = (frame, url) => new Promise((res) => { frame.onload = () => res(); frame.src = url; });
+const cap = (en, ta) => { if (!en) return $('#cap').classList.remove('on'); $('#capE').textContent = en; $('#capT').textContent = ta || ''; $('#cap').classList.add('on'); };
+const cur = $('#cur');
+async function tapAt(sel, doc = D(), frameOff = [0, 0]) {
+  const el = doc.querySelector(sel); if (!el) return null;
+  const r = el.getBoundingClientRect();
+  cur.style.left = (frameOff[0] + r.left + r.width / 2) + 'px'; cur.style.top = (frameOff[1] + r.top + r.height / 2) + 'px'; cur.classList.add('on');
+  await wait(560); cur.classList.remove('tap'); void cur.offsetWidth; cur.classList.add('tap'); el.click(); await wait(250); return el;
+}
+const hide = () => cur.classList.remove('on');
+const change = (el) => el.dispatchEvent(new Event('change', { bubbles: true }));
+
+window.setup = async () => { try { sessionStorage.clear(); } catch (e) {} await nav(site, 'about:blank'); await document.fonts.ready; return true; };
+
+window.run = async (act, en, ta, ms) => {
+  const t0 = performance.now(), left = () => ms - (performance.now() - t0);
+  const card = $('#card');
+  switch (act) {
+    case 'intro':
+      card.innerHTML = `<img src="assets/media/logo-400.webp" alt=""><p>Website tour · Chromepet, Chennai</p><h1>KC <em>Customs</em></h1>`;
+      card.classList.add('on'); await wait(1400); cap(en, ta); await sleep(left() - 1500);
+      try { sessionStorage.removeItem('kc-intro'); } catch (e) {}
+      await nav(site, 'index.html?r=' + Date.now()); card.classList.remove('on'); cap(null); await sleep(left()); break;
+    case 'hero': cap(en, ta); await sleep(left() * .55); await scrollY(W(), 140, 1600); await scrollY(W(), 0, 1200); await sleep(left()); break;
+    case 'menu':
+      cap(en, ta); await tapAt('.menu-btn'); hide(); await sleep(Math.max(200, left() - 380));
+      D().querySelector('.menu-btn').click(); await sleep(left()); break;
+    case 'crafts':
+      await scrollY(W(), top(D(), '#crafts', -60), 1300); cap(en, ta);
+      await hscroll(D().querySelector('#crafts-track'), 1400, left() - 400); break;
+    case 'craftvideo': {
+      cap(en, ta); D().querySelector('#crafts-track').scrollLeft = 0; await wait(200);
+      await tapAt('#crafts-track .tile:nth-child(2)'); hide(); await sleep(left() - 500);
+      const v = D().querySelector('.vd'); if (v.open) v.close(); await sleep(left()); break; }
+    case 'builds': {
+      await scrollY(W(), top(D(), '#builds', -50), 1200); cap(en, ta);
+      const card1 = D().querySelector('.bc-media[data-frames]');
+      card1.dispatchEvent(new MouseEvent('mouseenter')); await wait(2600); card1.dispatchEvent(new MouseEvent('mouseleave'));
+      await hscroll(D().querySelector('#builds-track'), 1100, 2600);
+      await tapAt('.filters .chip[data-filter="king"]'); await wait(2200);
+      await tapAt('.filters .chip[data-filter="beyond"]'); await wait(1800);
+      await tapAt('.filters .chip[data-filter="all"]'); hide(); await sleep(left()); break; }
+    case 'process':
+      await scrollY(W(), top(D(), '#process', -50), 1100); cap(en, ta); await wait(1300);
+      await tapAt('#tab-hydro'); await sleep(left() / 2 - 300); await tapAt('#tab-floor'); hide(); await sleep(left()); break;
+    case 'picker':
+      await scrollY(W(), top(D(), '#design', -50), 1000); cap(en, ta); await wait(800);
+      await tapAt('#design .sec-top .btn'); hide();
+      site.style.opacity = 0; await wait(400); await nav(site, 'design.html'); site.style.opacity = 1; await wait(1500);
+      await tapAt('.model[data-model="rxz"]'); hide(); await sleep(left()); break;
+    case 'paint':
+      cap(en, ta);
+      await tapAt('#panel [data-set="color"][data-val="#813D8A"]'); await wait(500);
+      await tapAt('#panel [data-set="color"][data-val="#C4161C"]'); await wait(400);
+      await tapAt('#panel [data-set="finish"][data-val="chrome"]'); await wait(400);
+      await tapAt('#panel [data-set="accent"][data-val="#F2C200"]'); hide(); await sleep(left()); break;
+    case 'graphics': {
+      cap(en, ta); await tapAt('.st-steps button[data-k="graphics"]');
+      await tapAt('#panel [data-set="graphic"][data-val="flames"]'); await wait(900);
+      await tapAt('#panel [data-set="graphic"][data-val="lettering"]');
+      const i = D().querySelector('#panel [data-text="text"]'); const word = 'RED ROCKET';
+      for (let k = 1; k <= word.length; k++) { i.value = word.slice(0, k); i.dispatchEvent(new Event('input', { bubbles: true })); await wait(110); }
+      hide(); await sleep(left()); break; }
+    case 'airbrush':
+      cap(en, ta); await tapAt('.st-steps button[data-k="airbrush"]');
+      await tapAt('#panel [data-set="art"][data-val="skull-flame"]'); await wait(700);
+      await tapAt('#panel [data-set="art"][data-val="deity-murugan"]'); await wait(500);
+      await tapAt('#panel [data-set="place"][data-val="side"]'); hide(); await sleep(left()); break;
+    case 'hydro': {
+      cap(en, ta); await tapAt('.st-steps button[data-k="hydro"]');
+      await tapAt('#panel [data-set="hydro"][data-val="roses"]');
+      const c = D().querySelector('#panel [data-hydro-part="frontGuard"]'); c.checked = true; change(c);
+      hide(); await sleep(left()); break; }
+    case 'parts':
+      cap(en, ta); await tapAt('.st-steps button[data-k="parts"]');
+      await tapAt('#panel [data-part="engine"][data-src="accent"]'); await wait(400);
+      await tapAt('#panel [data-part="rearGuard"][data-src="accent"]'); await wait(400);
+      await tapAt('#panel [data-set="rims"][data-val="gold"]'); hide(); await sleep(left()); break;
+    case 'extras': {
+      cap(en, ta); await tapAt('.st-steps button[data-k="extras"]');
+      const m = D().querySelector('#panel [data-mod="sixspeed"]'); m.checked = true; change(m);
+      const t = D().querySelector('#panel [data-text="note"]'); t.value = 'Ready for the December meet'; t.dispatchEvent(new Event('input', { bubbles: true }));
+      hide(); await sleep(left()); break; }
+    case 'views': {
+      cap(en, ta);
+      await tapAt('[data-view="tank"]'); await wait(900); await tapAt('[data-zoom="1"]'); await wait(600);
+      await tapAt('[data-view="full"]'); await wait(500);
+      await tapAt('[data-act="compare"]');
+      const r = D().querySelector('#cmp input'); await tween(2400, (k) => { r.value = 15 + 70 * k; r.dispatchEvent(new Event('input')); });
+      await tapAt('[data-act="compare"]'); hide(); await sleep(left()); break; }
+    case 'request': {
+      cap(en, ta); await tapAt('.sum-actions [data-act="save"]'); await wait(900);
+      await tapAt('.sum-actions [data-act="request"]'); await wait(800);
+      D().querySelector('#req input[name=name]').value = 'Customer';
+      await tapAt('#req input[name=ack]'); hide(); await wait(700);
+      const m = await import('./configurator/exporter.js'); const st = await import('./configurator/store.js');
+      const cfg = st.decode(new URLSearchParams(W().location.hash.slice(1)).get('c'));
+      $('#msg').textContent = m.whatsappText(cfg, st.refOf(cfg), 'https://your-domain/design.html#c=…', 'Customer');
+      $('#bubble').classList.add('on'); await sleep(left()); break; }
+    case 'mobile': {
+      $('#bubble').classList.remove('on'); D().querySelector('#req').close();
+      await nav($('#ph'), 'index.html'); $('#phoneBg').classList.add('on'); $('#phone').classList.add('on'); cap(en, ta); await wait(900);
+      const pw = $('#ph').contentWindow, pd = $('#ph').contentDocument;
+      await scrollY(pw, top(pd, '#crafts', -60), 1800); await hscroll(pd.querySelector('#crafts-track'), 500, 1600);
+      await scrollY(pw, top(pd, '#builds', -60), 1500); await hscroll(pd.querySelector('#builds-track'), 600, Math.max(400, left() - 200)); break; }
+    case 'mstudio': {
+      cap(en, ta); await nav($('#ph'), 'design.html?bike=rx115'); await wait(700);
+      const pd = $('#ph').contentDocument, ph = $('#phone').getBoundingClientRect(), off = [ph.left + 15, ph.top + 18];
+      const steps = Math.max(2, Math.floor((left() - 400) / 1500));
+      for (let k = 0; k < steps; k++) {
+        if (k === 0) { await tapAt('#panel [data-set="color"][data-val="#E5357F"]', pd, off); }
+        await tapAt('[data-step="1"]', pd, off); await wait(500);
+      }
+      hide(); await sleep(left()); break; }
+    case 'rest':
+      $('#phone').classList.remove('on'); $('#phoneBg').classList.remove('on');
+      await nav(site, 'index.html'); W().scrollTo(0, top(D(), '#academy', -50)); cap(en, ta); await sleep(left() * .4);
+      await scrollY(W(), top(D(), '#about', -50), left() * .55); await sleep(left()); break;
+    case 'visit':
+      await scrollY(W(), top(D(), '#visit', -40), 1200); cap(en, ta); await wait(600);
+      await tapAt('.map-btn'); hide(); await wait(1200);
+      await scrollY(W(), D().documentElement.scrollHeight, Math.max(300, left() - 200)); break;
+    case 'outro':
+      card.innerHTML = `<img src="assets/media/logo-400.webp" alt=""><h1>Beyond <em>the</em> Expectations</h1><p>Custom airbrush · Hydro dip · Builds · Academy</p><p style="letter-spacing:.12em;color:#D9B07F">Chromepet, Chennai · WhatsApp 96771 84462</p>`;
+      card.classList.add('on'); cap(null); await sleep(left()); break;
+  }
+};
+</script>
+</body></html>

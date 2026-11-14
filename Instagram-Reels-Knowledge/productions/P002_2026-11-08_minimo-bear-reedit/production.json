@@ -1,0 +1,143 @@
+{
+  "id": "P002",
+  "folder": "P002_2026-11-08_minimo-bear-reedit",
+  "created": "2026-11-08T02:03:42",
+  "stages": {
+    "ingested": {
+      "at": "2026-11-08T02:07:19",
+      "videos": 3,
+      "copied": [
+        "IMG_7189.MOV",
+        "IMG_7191.MOV",
+        "IMG_7192.MOV"
+      ],
+      "total_video_s": 84.53
+    },
+    "analyzed": {
+      "at": "2026-11-08T02:07:45",
+      "clips": 3,
+      "model": null
+    },
+    "moments": {
+      "at": "2026-11-08T02:07:47",
+      "proposed": 12,
+      "pillar": "default"
+    },
+    "rendered": {
+      "at": "2026-11-08T07:11:17",
+      "version": 7,
+      "variants": [
+        "final"
+      ],
+      "draft": false
+    },
+    "qc": {
+      "at": "2026-11-08T07:11:59",
+      "version": 7,
+      "variant": "final",
+      "verdict": "pass"
+    },
+    "delivered": {
+      "at": "2026-11-08T02:38:30",
+      "version": 6,
+      "final": "publish/FINAL.mp4",
+      "verdict": "pass"
+    }
+  },
+  "versions": {
+    "1": {
+      "edl": "edl.v1.json",
+      "variants": {
+        "clean": "v1_clean.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "clean": 126.4
+      }
+    },
+    "2": {
+      "edl": "edl.v2.json",
+      "variants": {
+        "clean": "v2_clean.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "clean": 129.8
+      }
+    },
+    "3": {
+      "edl": "edl.v3.json",
+      "variants": {
+        "final": "v3_final.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "final": 134.4
+      }
+    },
+    "4": {
+      "edl": "edl.v4.json",
+      "variants": {
+        "clean": "v4_clean.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "clean": 199.4
+      }
+    },
+    "5": {
+      "edl": "edl.v5.json",
+      "variants": {
+        "final": "v5_final.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "final": 167.2
+      }
+    },
+    "6": {
+      "edl": "edl.v6.json",
+      "variants": {
+        "clean": "v6_clean.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "clean": 228.4
+      }
+    },
+    "7": {
+      "edl": "edl.v7.json",
+      "variants": {
+        "final": "v7_final.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "final": 109.5
+      }
+    }
+  },
+  "log": [
+    "2026-11-08T02:07:19 ingested",
+    "2026-11-08T02:07:45 analyzed",
+    "2026-11-08T02:07:47 moments",
+    "2026-11-08T02:13:36 rendered",
+    "2026-11-08T02:14:25 qc",
+    "2026-11-08T02:14:26 delivered",
+    "2026-11-08T02:17:41 rendered",
+    "2026-11-08T02:18:31 qc",
+    "2026-11-08T02:18:32 delivered",
+    "2026-11-08T02:21:00 rendered",
+    "2026-11-08T02:22:07 qc",
+    "2026-11-08T02:22:54 qc",
+    "2026-11-08T02:28:16 rendered",
+    "2026-11-08T02:29:23 qc",
+    "2026-11-08T02:29:25 delivered",
+    "2026-11-08T02:32:14 rendered",
+    "2026-11-08T02:33:16 qc",
+    "2026-11-08T02:37:24 rendered",
+    "2026-11-08T02:38:29 qc",
+    "2026-11-08T02:38:30 delivered",
+    "2026-11-08T07:11:17 rendered",
+    "2026-11-08T07:11:59 qc"
+  ]
+}

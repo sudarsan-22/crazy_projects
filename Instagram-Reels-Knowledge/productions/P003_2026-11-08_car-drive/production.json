@@ -1,0 +1,170 @@
+{
+  "id": "P003",
+  "folder": "P003_2026-11-08_car-drive",
+  "created": "2026-11-08T02:38:37",
+  "stages": {
+    "ingested": {
+      "at": "2026-11-08T07:03:04",
+      "videos": 5,
+      "copied": [],
+      "total_video_s": 41.96
+    },
+    "rendered": {
+      "at": "2026-11-08T08:01:55",
+      "version": 11,
+      "variants": [
+        "final"
+      ],
+      "draft": false
+    },
+    "qc": {
+      "at": "2026-11-08T08:04:03",
+      "version": 11,
+      "variant": "final",
+      "verdict": "pass"
+    },
+    "delivered": {
+      "at": "2026-11-08T08:00:27",
+      "version": 10,
+      "final": "publish/FINAL.mp4",
+      "verdict": "pass"
+    }
+  },
+  "versions": {
+    "1": {
+      "edl": "edl.v1.json",
+      "variants": {
+        "clean": "v1_clean.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "clean": 89.6
+      }
+    },
+    "2": {
+      "edl": "edl.v2.json",
+      "variants": {
+        "clean": "v2_clean.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "clean": 87.4
+      }
+    },
+    "3": {
+      "edl": "edl.v3.json",
+      "variants": {
+        "clean": "v3_clean.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "clean": 85.1
+      }
+    },
+    "4": {
+      "edl": "edl.v4.json",
+      "variants": {
+        "final": "v4_final.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "final": 86.3
+      }
+    },
+    "5": {
+      "edl": "edl.v5.json",
+      "variants": {
+        "clean": "v5_clean.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "clean": 89.2
+      }
+    },
+    "6": {
+      "edl": "edl.v6.json",
+      "variants": {
+        "final": "v6_final.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "final": 88.7
+      }
+    },
+    "7": {
+      "edl": "edl.v7.json",
+      "variants": {
+        "clean": "v7_clean.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "clean": 87.7
+      }
+    },
+    "8": {
+      "edl": "edl.v8.json",
+      "variants": {
+        "clean": "v8_clean.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "clean": 76.7
+      }
+    },
+    "9": {
+      "edl": "edl.v9.json",
+      "variants": {
+        "final": "v9_final.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "final": 83.4
+      }
+    },
+    "10": {
+      "edl": "edl.v10.json",
+      "variants": {
+        "clean": "v10_clean.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "clean": 86.4
+      }
+    },
+    "11": {
+      "edl": "edl.v11.json",
+      "variants": {
+        "final": "v11_final.mp4"
+      },
+      "draft": false,
+      "wall_s": {
+        "final": 86.2
+      }
+    }
+  },
+  "log": [
+    "2026-11-08T07:02:17 ingested",
+    "2026-11-08T07:03:04 ingested",
+    "2026-11-08T07:13:37 rendered",
+    "2026-11-08T07:15:58 rendered",
+    "2026-11-08T07:17:59 rendered",
+    "2026-11-08T07:19:34 rendered",
+    "2026-11-08T07:20:09 qc",
+    "2026-11-08T07:20:38 qc",
+    "2026-11-08T07:22:20 rendered",
+    "2026-11-08T07:23:50 rendered",
+    "2026-11-08T07:24:22 qc",
+    "2026-11-08T07:24:51 qc",
+    "2026-11-08T07:26:28 rendered",
+    "2026-11-08T07:26:56 qc",
+    "2026-11-08T07:26:57 delivered",
+    "2026-11-08T07:55:58 rendered",
+    "2026-11-08T07:57:24 rendered",
+    "2026-11-08T07:59:24 rendered",
+    "2026-11-08T08:00:26 qc",
+    "2026-11-08T08:00:27 delivered",
+    "2026-11-08T08:01:55 rendered",
+    "2026-11-08T08:03:01 qc",
+    "2026-11-08T08:04:03 qc"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+ "IMG_7189": {
+  "duration": 19.3567,
+  "shots": 2,
+  "subject_coverage": 0.959,
+  "subject_sources": {
+   "face": 0,
+   "motion": 93,
+   "none": 4
+  },
+  "speech_seconds": null,
+  "language": null,
+  "timings_s": {
+   "scenes": 1.6,
+   "visual": 2.1,
+   "total": 4.2
+  }
+ },
+ "IMG_7191": {
+  "duration": 43.6417,
+  "shots": 4,
+  "subject_coverage": 0.991,
+  "subject_sources": {
+   "face": 0,
+   "motion": 217,
+   "none": 2
+  },
+  "speech_seconds": null,
+  "language": null,
+  "timings_s": {
+   "scenes": 3.4,
+   "visual": 3.4,
+   "total": 7.7
+  }
+ },
+ "IMG_7192": {
+  "duration": 21.535,
+  "shots": 0,
+  "subject_coverage": 0.991,
+  "subject_sources": {
+   "face": 0,
+   "motion": 107,
+   "none": 1
+  },
+  "speech_seconds": null,
+  "language": null,
+  "timings_s": {
+   "scenes": 2.3,
+   "visual": 1.8,
+   "total": 4.3
+  }
+ }
+}

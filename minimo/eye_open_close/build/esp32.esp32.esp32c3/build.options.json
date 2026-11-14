@@ -1,0 +1,9 @@
+{
+  "additionalFiles": "",
+  "compiler.optimization_flags": "-Os",
+  "customBuildProperties": "",
+  "fqbn": "esp32:esp32:esp32c3:CDCOnBoot=cdc,FlashMode=dio",
+  "hardwareFolders": "/home/sudarsan/.arduino15/packages/esp32/hardware/esp32/3.3.12,/home/sudarsan/.arduino15/packages/esp32/hardware/esp32/3.3.12",
+  "otherLibrariesFolders": "/home/sudarsan/Arduino/libraries",
+  "sketchLocation": "/home/sudarsan/Documents/crazy_projects/minimo/eye_open_close"
+}

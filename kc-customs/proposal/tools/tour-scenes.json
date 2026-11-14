@@ -1,0 +1,128 @@
+[
+ {
+  "act": "intro",
+  "bars": 4,
+  "en": "A digital showroom for KC Customs",
+  "ta": ""
+ },
+ {
+  "act": "hero",
+  "bars": 4,
+  "en": "Beyond the Expectations: your tagline, your studio",
+  "ta": ""
+ },
+ {
+  "act": "menu",
+  "bars": 2,
+  "en": "Simple, fast navigation",
+  "ta": ""
+ },
+ {
+  "act": "crafts",
+  "bars": 4,
+  "en": "9 signature crafts",
+  "ta": ""
+ },
+ {
+  "act": "craftvideo",
+  "bars": 2,
+  "en": "Every tile plays your own video",
+  "ta": ""
+ },
+ {
+  "act": "builds",
+  "bars": 6,
+  "en": "12 featured builds · hover previews · filter by model",
+  "ta": ""
+ },
+ {
+  "act": "process",
+  "bars": 4,
+  "en": "Airbrush · Hydro dip · Studio floor",
+  "ta": ""
+ },
+ {
+  "act": "picker",
+  "bars": 3,
+  "en": "Design your dream bike: pick your RX",
+  "ta": ""
+ },
+ {
+  "act": "paint",
+  "bars": 3,
+  "en": "Real KC colours and finishes",
+  "ta": ""
+ },
+ {
+  "act": "graphics",
+  "bars": 3,
+  "en": "Graphics and custom lettering",
+  "ta": ""
+ },
+ {
+  "act": "airbrush",
+  "bars": 3,
+  "en": "Airbrush artwork from KC's own work",
+  "ta": ""
+ },
+ {
+  "act": "hydro",
+  "bars": 2,
+  "en": "Real hydro dip patterns",
+  "ta": ""
+ },
+ {
+  "act": "parts",
+  "bars": 3,
+  "en": "Every part, every rim",
+  "ta": ""
+ },
+ {
+  "act": "extras",
+  "bars": 2,
+  "en": "Model-specific modifications",
+  "ta": ""
+ },
+ {
+  "act": "views",
+  "bars": 3,
+  "en": "Zoom, views and compare with stock",
+  "ta": ""
+ },
+ {
+  "act": "request",
+  "bars": 5,
+  "en": "Save, share and request the build on WhatsApp",
+  "ta": ""
+ },
+ {
+  "act": "mobile",
+  "bars": 4,
+  "en": "Built for phones first",
+  "ta": ""
+ },
+ {
+  "act": "mstudio",
+  "bars": 4,
+  "en": "Design on the phone, step by step",
+  "ta": ""
+ },
+ {
+  "act": "rest",
+  "bars": 4,
+  "en": "The academy and Chandu's story",
+  "ta": ""
+ },
+ {
+  "act": "visit",
+  "bars": 4,
+  "en": "Visit the Chromepet studio, with directions",
+  "ta": ""
+ },
+ {
+  "act": "outro",
+  "bars": 6,
+  "en": "",
+  "ta": ""
+ }
+]

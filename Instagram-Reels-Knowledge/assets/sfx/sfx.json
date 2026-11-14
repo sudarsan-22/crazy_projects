@@ -1,0 +1,57 @@
+{
+ "whoosh_short.wav": {
+  "duration": 0.35,
+  "peak_ms": 195,
+  "mtime": 1794037350
+ },
+ "impact_hit.wav": {
+  "duration": 0.9,
+  "peak_ms": 8,
+  "mtime": 1794037349
+ },
+ "punch.wav": {
+  "duration": 0.4,
+  "peak_ms": 11,
+  "mtime": 1794037349
+ },
+ "pop.wav": {
+  "duration": 0.12,
+  "peak_ms": 8,
+  "mtime": 1794037349
+ },
+ "whoosh_airy.wav": {
+  "duration": 0.5,
+  "peak_ms": 258,
+  "mtime": 1794037350
+ },
+ "ding.wav": {
+  "duration": 1.0,
+  "peak_ms": 8,
+  "mtime": 1794037349
+ },
+ "whoosh_long.wav": {
+  "duration": 0.7,
+  "peak_ms": 361,
+  "mtime": 1794037350
+ },
+ "click.wav": {
+  "duration": 0.04,
+  "peak_ms": 7,
+  "mtime": 1794037349
+ },
+ "riser_2s.wav": {
+  "duration": 2.0,
+  "peak_ms": 1986,
+  "mtime": 1794037349
+ },
+ "shutter.wav": {
+  "duration": 0.15,
+  "peak_ms": 7,
+  "mtime": 1794037349
+ },
+ "sub_drop.wav": {
+  "duration": 1.6,
+  "peak_ms": 9,
+  "mtime": 1794037350
+ }
+}

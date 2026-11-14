@@ -1,0 +1,43 @@
+[project]
+name = "reel-engine"
+version = "0.1.0"
+description = "Autonomous Instagram Reel editor: analysis, EDL validation, rendering and QC (see KB docs 29-34)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "numpy>=2.1",
+  "opencv-python>=5.0,<6",        # ONE OpenCV variant only (PySceneDetect depends on opencv-python)
+  "scenedetect>=0.7.2,<0.8",
+  "av>=19,<20",
+  "librosa>=1.0,<1.1",
+  "soundfile>=0.13",
+  "pyloudnorm>=0.2",
+  "pydantic>=2.10,<3",
+]
+
+[project.optional-dependencies]
+ml = [
+  "torch==2.11.*",                # CPU wheels via the explicit index below
+  "torchaudio==2.11.*",           # matched pair with torch
+  "beat-this>=1.1",
+  "faster-whisper>=1.2",
+]
+
+[project.scripts]
+reel = "reelengine.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.13,<0.14"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "reelengine"
+module-root = ""
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu" }]
+torchaudio = [{ index = "pytorch-cpu" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

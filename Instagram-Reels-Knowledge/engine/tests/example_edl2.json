@@ -1,0 +1,26 @@
+{
+  "schema": "edl/2", "fps": 30, "width": 1080, "height": 1920, "crf": 18,
+  "audio_rights": "in_app_library",
+  "markers": {"H": 0.0, "D": 7.52, "S": 11.80, "E": 15.0},
+  "segments": [
+    {"id": "seg1", "src": "fixtures/S1.mp4", "in": 12.40, "out": 15.10, "speed": 1.0,
+     "fit": "track", "grade": "moviemode", "audio": "keep"},
+    {"id": "seg2", "src": "fixtures/S1.mp4", "in": 15.10, "out": 16.20, "speed": {"ramp": [1.0, 0.25]},
+     "fit": "track", "grade": "moviemode", "audio": "mute", "freeze_end": 1.2},
+    {"id": "seg3", "src": "fixtures/S2.mp4", "in": 3.00, "out": 6.40, "speed": 1.0,
+     "fit": "crop", "grade": "reality", "audio": "keep"}
+  ],
+  "sync": [{"event": "seg2.freeze_start", "marker": "D", "flex": "seg1.in"},
+           {"event": "end", "marker": "E", "flex": "seg3.out"}],
+  "components": [
+    {"macro": "S1_name_card", "at": "seg2.freeze_start", "dur": 1.2, "text": "RABBIT — THE VILLAIN"},
+    {"macro": "S3_bruh_sting", "at": "marker:S"},
+    {"macro": "S4_episode_tag", "text": "PET CAST #03"}
+  ],
+  "text": [{"style": "caption", "text": "என்ன டா இது?", "start": 12.6, "end": 14.0},
+           {"style": "hook", "text": "He planned this.", "punch": "planned", "start": 0.1, "dur": 1.8}],
+  "sfx": [{"file": "assets/sfx/whoosh_short.wav", "at": "seg3.start", "align": "peak", "gain_db": -10}],
+  "cover_at": "seg2.freeze_start+0.3",
+  "caption": {"text": "He planned this. 🐇", "hashtags": ["#petrabbit", "#tamilcomedy"],
+              "audio": {"name": "(test) villain BGM", "start": "0:41.3"}}
+}
