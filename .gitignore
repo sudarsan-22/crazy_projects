@@ -6,3 +6,9 @@ node_modules/
 *.mp4
 *.wav
 *.pack
+
+# 3D design: large generated/backup files
+output/
+backup_before_*/
+*.zip
+result.json
